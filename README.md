@@ -1243,5 +1243,4 @@ $ curl http://115.68.151.187/#/main/spring-music-pinpoint@TOMCAT
 ```
 
 [pinpoint_image_01]:/images/pinpoint-image1.png
-[pinpoint_image_02]:/images/pinpoint-image2.png
 [pinpoint_image_03]:/images/pinpoint-image3.png
