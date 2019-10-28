@@ -1,0 +1,43 @@
+#!/bin/bash
+
+set -e
+set -u
+
+#SET HELPER
+export JOB_NAME='collector'
+source /var/vcap/packages/bosh-helpers/ctl_setup.sh $JOB_NAME
+export PID_FILE=/etc/sv/monit/pinpoint.pid
+HBASE_CONFIG="${JOB_DIR}/data/hbase.properties"
+PINPOINT_CONFIG="${JOB_DIR}/data/pinpoint-collector.properties"
+hostnamectl set-hostname <%=link('collector_link').address %>
+source /var/vcap/jobs/${JOB_NAME}/bin/ctl_common.sh ${JOB_NAME}
+#COMMON INIT
+common_init
+case $1 in
+  
+  start)
+    echo "Starting COLLECTOR ..."
+    
+    pid_guard $PID_FILE $JOB_NAME
+    war_name='pinpoint-collector-1.8.4.war'
+    common_start $war_name
+    cp -r $HBASE_CONFIG $CATALINA_HOME/webapps/ROOT/WEB-INF/classes/
+    cp -r $PINPOINT_CONFIG $CATALINA_HOME/webapps/ROOT/WEB-INF/classes/
+
+    $CATALINA_HOME/bin/startup_pinpoint.sh
+
+    echo "SUCCESS :: Starting COLLECTOR ..."
+    ;;
+  
+  stop)
+    echo "Stopping COLLECTOR ..."
+    $CATALINA_HOME/bin/shutdown_pinpoint.sh > /dev/null &
+    kill_and_wait $PID_FILE
+    ;;
+  
+  *)
+    echo "Usage: $0 {start|stop}"
+    ;;
+
+esac
+exit 1

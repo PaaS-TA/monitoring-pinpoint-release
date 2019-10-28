@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+export NAME='<%= name %>'
+export JOB_INDEX=<%= index %>
+export JOB_FULL="$NAME/$JOB_INDEX"
+
+#SET ENV
+export HOME=/var/vcap
+export JOB_DIR=$HOME/jobs/$JOB_NAME
+export PKG_DIR=$HOME/packages
+export JAVA_HOME=$PKG_DIR/java
+export JAVA_8_HOME=$JAVA_HOME
+export PATH=$PATH:$JAVA_HOME/bin
+export M2_HOME=$PKG_DIR/maven
+export PATH=$PATH:$M2_HOME/bin
+export CATALINA_HOME=$PKG_DIR/tomcat
+export PATH=$PATH:$CATALINA_HOME/bin

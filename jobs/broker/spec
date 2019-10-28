@@ -1,0 +1,30 @@
+---
+name: broker
+packages:
+  - broker
+  - java
+templates:
+  bin/broker_ctl: bin/broker_ctl
+  bin/monit_debugger: bin/monit_debugger
+  data/properties.sh.erb: data/properties.sh
+  helpers/ctl_setup.sh: helpers/ctl_setup.sh
+  helpers/ctl_utils.sh: helpers/ctl_utils.sh
+  config/broker.yml.erb: config/broker.yml
+  config/application-mvc.properties.erb: config/application-mvc.properties
+  config/collector.json.erb: config/collector.json
+  config/logback.xml.erb: config/logback.xml
+
+provides:
+  - name: broker_link
+    type: broker
+
+consumes:
+  - name: broker_link
+    type: broker
+  - name: collector_link
+    type: collector
+
+
+properties:
+  broker.dashboard_uri:
+    description: 'web ui dashboard uri'

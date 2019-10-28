@@ -1,0 +1,20 @@
+---
+name: haproxy_webui
+packages:
+  - bosh-helpers
+  - java
+  - haproxy
+
+templates:
+  bin/haproxy_webui_ctl.erb: bin/haproxy_webui_ctl
+  config/haproxy/haproxy.cfg.erb: config/haproxy/haproxy.cfg
+  data/properties.sh.erb: data/properties.sh
+
+provides:
+  - name: haproxy_link
+    type: haproxy
+
+consumes:
+  - name: pinpoint_web_link
+    type: pinpoint_web
+

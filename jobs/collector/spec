@@ -1,0 +1,41 @@
+---
+name: collector
+packages:
+  - bosh-helpers
+  - java
+  - collector
+  - tomcat
+
+templates:
+  bin/collector_ctl.erb: bin/collector_ctl
+  data/properties.sh.erb: data/properties.sh
+  data/hbase.properties.erb: data/hbase.properties
+  data/pinpoint-collector.properties.erb: data/pinpoint-collector.properties
+  bin/ctl_common.sh: bin/ctl_common.sh
+provides:
+  - name: collector_link
+    type: collector
+    properties: 
+    - broker.collector_span_port
+    - broker.collector_stat_port
+    - broker.collector_tcp_port
+
+consumes:
+  - name: h_master_link
+    type: h_master
+  - name: collector_link
+    type: collector
+
+properties:
+  broker.collector_span_port:
+    description: Master host name
+    default: 29996
+  broker.collector_stat_port:
+    description: Master host ip
+    default: 29995
+  broker.collector_tcp_port:
+    description: Master port
+    default: 29994
+  java_opts:
+    description: 'Luncher Java option'
+    default: '-Xms512m -Xmx1024m -XX:ReservedCodeCacheSize=240m -XX:+UseCompressedOops -Dfile.encoding=UTF-8 -XX:+UseConcMarkSweepGC -XX:SoftRefLRUPolicyMSPerMB=50 -Dsun.io.useCanonCaches=false -Djava.net.preferIPv4Stack=true -XX:+HeapDumpOnOutOfMemoryError -XX:-OmitStackTraceInFastThrow -Xverify:none -XX:ErrorFile=/var/vcap/sys/log/java_error_in_idea_%p.log -XX:HeapDumpPath=/var/vcap/sys/log/java_error_in_idea.hprof'
