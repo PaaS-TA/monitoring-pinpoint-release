@@ -11,8 +11,7 @@
   - 2.4. [Pinpoint 서비스 브로커 등록](#24)
 3. [Sample Web App 연동 Pinpoint 연동](#3)
   - 3.1. [Sample Web App 구조](#31)
-  - 3.2. [PaaS-TA에서 서비스 신청](#32)
-  - 3.3. [Sample Web App에 서비스 바인드 신청 및 App 확인](#33)
+  - 3.2. [Sample Web App에 서비스 바인드 신청 및 App 확인](#33)
 
 # <div id='1'> 1. 문서 개요
 ### <div id='11'> 1.1. 목적
@@ -991,7 +990,7 @@ $ cf push -b java_buildpack_pinpoint --no-start
 ```
 
 ```
-Using manifest file /home/ubuntu/workspace/bd_test/spring-music/manifest.yml
+Using manifest file /home/ubuntu/workspace/user/arom/spring-music/manifest.yml
 
 Creating app spring-music-pinpoint in org org / space space as admin...
 OK
@@ -1017,12 +1016,11 @@ Getting apps in org org / space space as admin...
 OK
 
 name                    requested state   instances   memory   disk   urls
-php-demo                started           1/1         256M     1G     php-demo.monitoring.open-paas.com
-spring-music            stopped           0/1         512M     1G     spring-music.monitoring.open-paas.com
 spring-music-pinpoint   stopped           0/1         512M     1G     spring-music-pinpoint.monitoring.open-paas.com
 ```
 
-### <div id='32'> 3.2. PaaS-TA에서 서비스 신청
+### <div id='33'> 3.2. Sample Web App에 서비스 바인드 신 및 App 확인
+-------------------------------------------------
 
 Sample Web App에서 Pinpoint 서비스를 사용하기 위해서는 서비스
 신청(Provision)을 해야 한다.
@@ -1038,7 +1036,7 @@ $ cf bind-service {App명} {서비스명} -c '{"application_name":"App명"}'
 ```
 
 ```
-$ cf bind-service spring-music-pinpoint pinpoint_monitoring_service -c '{"application_name":"pring-music-pinpoint"}' 
+$ cf bind-service spring-music-pinpoint pinpoint_monitoring_service -c '{"application_name":"spring-music-pinpoint"}' 
 ```
 ```
 ```
@@ -1054,53 +1052,7 @@ Getting services in org org / space space as admin...
 OK
 
 name             service         plan                bound apps               last operation
-pinpoint_monitoring_kim01     user-provided                       spring-music-01, spring-music-02, spring-music-03, spring-music-04, spring-music-05, spring-music-06, spring-music-07, spring-music-08, spring-music-09, spring-music-10, spring-music-11, spring-music-12                                               
-pinpoint_monitoring_service   user-provided 
-```
-
-### <div id='33'> 3.3. Sample Web App에 서비스 바인드 신청 및 App 확인
--------------------------------------------------
-
-서비스 신청이 완료되었으면 Sample Web App 에서는 생성된 서비스
-인스턴스를 Bind 하여 App에서 Pinpoint 서비스를 이용한다.
-
-\*참고: 서비스 Bind 신청시 PaaS-TA 플랫폼에서 서비스 Bind신청 할
-수 있는 사용자로 로그인이 되어 있어야 한다.
-
--   Sample Web App에서 생성한 서비스 인스턴스 바인드 신청을 한다.
-
-<br>
-- 서비스 인스턴스 확인
-```
-$ cf s
-```
-```
-Getting services in org org / space space as admin...
-OK
-
-name             service         plan                bound apps               last operation
-app_log_drain    user-provided
-PS1              Pinpoint        Pinpoint_standard                            create succeeded
-syslog_service   user-provided                       spring-music, php-demo
-
-<br>
-- 서비스 바인드
-```
-$ cf bind-service spring-music-pinpoint PS1 -c '{"application_name":"spring-music"}'
-```
-Binding service PS1 to app spring-music-pinpoint in org org / space space as admin...
-OK
-TIP: Use 'cf restage spring-music-pinpoint' to ensure your env variable changes take effect
-```
-  
-cf cli 리눅스 버전 : 
-```
-cf bind-service <application이름> PS1 -c ‘{"application_name\":"<application이름>"}
-```  
-
-cf cli window 버전 : 
-```
-cf bind-service <application이름> PS1 -c "{\"application_name\":\"<application이름>\"}"
+pinpoint_monitoring_service   user-provided                       spring-music-pinpoint                                               
 ```
 <br>
 -   바인드가 적용되기 위해서 App을 restage한다.
@@ -1186,7 +1138,7 @@ System-Provided:
  {
   "credentials": {
    "application_name": "spring-music",
-   "collector_host": "10.244.2.30",
+   "collector_host": "10.0.81.122",
    "collector_span_port": 29996,
    "collector_stat_port": 29995,
    "collector_tcp_port": 29994
@@ -1239,7 +1191,7 @@ No staging env variables have been set
 <br>
 - App 정상 구동 확인
 ```
-$ curl http://115.68.151.187/#/main/spring-music-pinpoint@TOMCAT
+$ curl http://15.165.3.150:8079/#/main/spring-music-pinpoint@TOMCAT
 ```
 
 [pinpoint_image_01]:/images/pinpoint-image1.png
