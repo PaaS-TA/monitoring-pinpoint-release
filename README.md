@@ -142,14 +142,23 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
 - **사용 예시**
 
 		$ git clone https://github.com/PaaS-TA/PAAS-TA-PINPOINT-MONITORING-RELEASE.git
+		
 		$ cd PAAS-TA-PINPOINT-MONITORING-RELEASE
+		
 		$ mkdir src
+		
 		$ cd src
+		
 		$ wget -O paasta-pinpoint-src.zip http://45.248.73.44/index.php/s/yr9JK7efeYEXExZ/download
+		
 		$ unzip paasta-pinpoint-src.zip
+		
 		$ rm paasta-pinpoint-src.zip
+		
 		$ cd ..
+		
 		$ chmod +x create.sh
+		
 		$ ./create.sh
 
 -	업로드 된 Pinpoint 릴리즈를 확인한다.
