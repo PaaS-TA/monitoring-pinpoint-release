@@ -11,7 +11,7 @@
   - 2.4. [Pinpoint 서비스 브로커 등록](#24)
 3. [Sample Web App 연동 Pinpoint 연동](#3)
   - 3.1. [Sample Web App 구조](#31)
-  - 3.2. [Sample Web App에 서비스 바인드 신청 및 App 확인](#33)
+  - 3.2. [Sample Web App에 서비스 바인드 신청 및 App 확인](#32)
 
 # <div id='1'> 1. 문서 개요
 ### <div id='11'> 1.1. 목적
@@ -1019,7 +1019,7 @@ name                    requested state   instances   memory   disk   urls
 spring-music-pinpoint   stopped           0/1         512M     1G     spring-music-pinpoint.monitoring.open-paas.com
 ```
 
-### <div id='33'> 3.2. Sample Web App에 서비스 바인드 신 및 App 확인
+### <div id='33'> 3.2. Sample Web App에 서비스 바인드 신청 및 App 확인
 -------------------------------------------------
 
 Sample Web App에서 Pinpoint 서비스를 사용하기 위해서는 서비스
