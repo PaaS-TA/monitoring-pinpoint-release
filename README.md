@@ -1019,7 +1019,7 @@ name                    requested state   instances   memory   disk   urls
 spring-music-pinpoint   stopped           0/1         512M     1G     spring-music-pinpoint.monitoring.open-paas.com
 ```
 
-### <div id='33'> 3.2. Sample Web App에 서비스 바인드 신청 및 App 확인
+### <div id='32'> 3.2. Sample Web App에 서비스 바인드 신청 및 App 확인
 -------------------------------------------------
 
 Sample Web App에서 Pinpoint 서비스를 사용하기 위해서는 서비스
