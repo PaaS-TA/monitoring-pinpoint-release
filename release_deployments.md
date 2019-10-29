@@ -2,6 +2,8 @@
 
 ## file download
 ###1. src
+
+>`$ git clone https://github.com/PaaS-TA/PAAS-TA-PINPOINT-MONITORING-RELEASE.git`
  
 >`$ cd PAAS-TA-PINPOINT-MONITORING-RELEASE`
 
