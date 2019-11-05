@@ -1035,7 +1035,7 @@ Sample Web App에서 Pinpoint 서비스를 사용하기 위해서는 서비스
 신청(Provision)을 해야 한다.
 
 ```  
-$ cf bind-service {App명} {서비스명} -c '{"application_name":"App명"}' 
+$ cf bind-service {App명} {서비스명}
 ```
 ```
 서비스명 : p-Pinpoint로 Marketplace에서 보여지는 서비스 명칭이다.
@@ -1045,7 +1045,7 @@ $ cf bind-service {App명} {서비스명} -c '{"application_name":"App명"}'
 ```
 
 ```
-$ cf bind-service spring-music-pinpoint pinpoint_monitoring_service -c '{"application_name":"spring-music-pinpoint"}' 
+$ cf bind-service spring-music-pinpoint pinpoint_monitoring_service
 ```
 ```
 ```
@@ -1064,7 +1064,7 @@ name             service         plan                bound apps               la
 pinpoint_monitoring_service   user-provided                       spring-music-pinpoint                                               
 ```
 <br>
--   바인드가 적용되기 위해서 App을 restage한다.
+-   바인드가 적용되기 위해서 App을 restage한다.(최초 app실행시 cf start {App명})
 
 ```
 $ cf restage spring-music-pinpoint
@@ -1143,23 +1143,19 @@ OK
 System-Provided:
 {
 "VCAP_SERVICES": {
-"Pinpoint": [
+"user-provided": [
  {
   "credentials": {
-   "application_name": "spring-music",
    "collector_host": "10.0.81.122",
    "collector_span_port": 29996,
    "collector_stat_port": 29995,
    "collector_tcp_port": 29994
   },
-  "label": "Pinpoint",
-  "name": "PS1",
-  "plan": "Pinpoint_standard",
-  "provider": null,
+  "label": "user-provided",
+  "instance_name": "pinpoint_monitoring_service",
+  "name": "pinpoint_monitoring_service",
   "syslog_drain_url": null,
-  "tags": [
-   "pinpoint"
-  ],
+  "tags": [],
   "volume_mounts": []
  }
 ]
