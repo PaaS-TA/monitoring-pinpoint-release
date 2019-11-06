@@ -930,8 +930,35 @@ PemSSH : true
 		pinpoint_web/c23b79cf-ef55-42f5-9c2a-b8102b6e5ca8   running        z3  10.0.81.123   i-02a82ab6f02784317  caas_small_highmem  true 
 
 
+### <div id='24'> 2.4. security-group 등록
+Pinpoint collector와 배포 app간 통신을 위한  처리.
 
-### <div id='24'> 2.4. Pinpoint 서비스 브로커 등록
+```
+$ vi pinpoint-asg.json
+
+[
+  {
+    "protocol": "all",
+    "destination": "xx.x.xx.0/24",
+    "log": true,
+    "description": "Allow tcp traffic to Z3"
+  }
+]
+```
+
+```
+$ cf create-security-group pinpoint pinpoint-asg.json
+```
+
+```
+$ cf bind-staging-security-group pinpoint
+```
+
+```
+$ cf bind-running-security-group pinpoint
+```
+
+### <div id='25'> 2.5. Pinpoint 서비스 브로커 등록
 
 Pinpoint 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩을
 사용하기 위해서 먼저 Pinpoint 서비스 브로커를 등록해 주어야 한다.
