@@ -30,7 +30,7 @@
 
 ### 3 Create & Upload Release
 ```
-  sh create.s
+  $ sh create.s
 ```
 
 ## 4. deploy
