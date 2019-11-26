@@ -542,7 +542,7 @@ deployment 파일에서 사용하는 network, vm_type 등은 cloud config 를 �
 # pinpoint_property.yml 설정 파일 내용
 ---
 ### On-Demand Bosh Deployment Name Setting ###
-deployment_name: paasta-pinpoint-monitoring                       #On-Demand Deployment Name
+deployment_name: paasta-pinpoint-monitoring                       #Deployment Name
 #
 #### Main Stemcells Setting ###
 stemcell_os: ubuntu-xenial                                      # Deployment Main Stemcell OS
@@ -557,12 +557,12 @@ vm_type: caas_small_highmem
 #test_vm_type: service_tiny
 #
 #### On-Demand Release Deployment Setting ### 
-releases_name :  paasta-pinpoint-monitoring-release                              # On-Demand Release Name
+releases_name :  paasta-pinpoint-monitoring-release                              # Release Name
 internal_networks_name : default                        # Some Network From Your 'bosh cloud-config(cc)'
 external_networks_name : vip
 haproxy_public_ip : 15.165.3.150
 mariadb_disk_type : 30GB # MariaDB Disk Type 'bosh cloud-config(cc)'
-PemSSH : true
+PemSSH : false                                                       #  h_master에서 ssh접근시 사용하는 key file(default : false) 
 ```
 
 
@@ -959,16 +959,16 @@ $ cf bind-staging-security-group pinpoint
 $ cf bind-running-security-group pinpoint
 ```
 
-### <div id='25'> 2.5. Pinpoint 서비스 브로커 등록
+### <div id='25'> 2.5. Pinpoint User-Provided 등록
 
 Pinpoint 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩을
-사용하기 위해서 먼저 Pinpoint 서비스 브로커를 등록해 주어야 한다.
+사용하기 위해서 먼저 Pinpoint User-Provided를 등록해 주어야 한다.
 
-서비스 브로커 등록시 PaaS-TA에서 서비스브로커를 등록 할
+User-Provided 등록시 PaaS-TA에서 서비스를 등록 할
 수 있는 사용자로 로그인이 되어 있어야 한다.
 
 <br>
--   서비스 브로커 목록을 확인한다.
+-   서비스 목록을 확인한다.
 
 ```
 $ cf services
@@ -981,10 +981,10 @@ No service brokers found
 ```
 
 <br>
--   Pinpoint 서비스 브로커를 등록한다.
+-   Pinpoint User-Provided를 등록한다.
 
 ```
-$ cf cups {서비스브로커 이름} -p '{"collector_host":"{PINOINT COLLECTOR IP}","collector_span_port":"{COLLECTOR SPAN PORT}","collector_stat_port":"{COLLECTOR START PORT}","collector_tcp_port":"{COLLECTOR TCP PORT}"}'
+$ cf cups {서비스 이름} -p '{"collector_host":"{PINOINT COLLECTOR IP}","collector_span_port":"{COLLECTOR SPAN PORT}","collector_stat_port":"{COLLECTOR START PORT}","collector_tcp_port":"{COLLECTOR TCP PORT}"}'
 ```
 
 ```
@@ -996,7 +996,7 @@ OK
 ```
 
 <br>
--   등록된 Pinpoint 서비스 브로커를 확인한다.
+-   등록된 Pinpoint User-Provided를 확인한다.
 
 ```
 $ cf services
