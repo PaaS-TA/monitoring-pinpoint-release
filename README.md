@@ -246,7 +246,7 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
 
 
 
-### <div id='23'> 2.3. MySQL 서비스 Deployment 파일 및 deploy_pinpoint-프로바이더.sh 수정 및 배포
+### <div id='23'> 2.3. PINPOINT 서비스 Deployment 파일 및 deploy_pinpoint-프로바이더.sh 수정 및 배포
 
 BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML 파일이다.
 Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (OS, BOSH agent) 을 사용할것이며 Release (Software packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params 등을 정의가 되어 있다.
@@ -573,7 +573,7 @@ PemSSH : true
 
 		$ cd deployments
 		$ ./deploy_pinpoint-{클라우드프로바이더}.sh
-		  Using deployment 'paasta-pinpoint-service'
+		  Using deployment 'paasta-pinpoint-monitoring'
 
 		  + azs:
 		  + - cloud_properties:
@@ -853,7 +853,7 @@ PemSSH : true
 		  + - disk_size: 1048576
 		  +   name: 1TB
 
-		  + name: paasta-pinpoint-service
+		  + name: paasta-pinpoint-monitoring
 
 		  Continue? [yN]: y
 
