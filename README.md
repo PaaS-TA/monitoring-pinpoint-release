@@ -246,7 +246,7 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
 
 
 
-### <div id='23'> 2.3. PINPOINT 서비스 Deployment 파일 및 deploy_pinpoint-프로바이더.sh 수정 및 배포
+### <div id='23'> 2.3. MySQL 서비스 Deployment 파일 및 deploy_pinpoint-프로바이더.sh 수정 및 배포
 
 BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML 파일이다.
 Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (OS, BOSH agent) 을 사용할것이며 Release (Software packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params 등을 정의가 되어 있다.
@@ -542,7 +542,7 @@ deployment 파일에서 사용하는 network, vm_type 등은 cloud config 를 �
 # pinpoint_property.yml 설정 파일 내용
 ---
 ### On-Demand Bosh Deployment Name Setting ###
-deployment_name: paasta-pinpoint-monitoring                       #Deployment Name
+deployment_name: paasta-pinpoint-monitoring                       #On-Demand Deployment Name
 #
 #### Main Stemcells Setting ###
 stemcell_os: ubuntu-xenial                                      # Deployment Main Stemcell OS
@@ -557,12 +557,12 @@ vm_type: caas_small_highmem
 #test_vm_type: service_tiny
 #
 #### On-Demand Release Deployment Setting ### 
-releases_name :  paasta-pinpoint-monitoring-release                              # Release Name
+releases_name :  paasta-pinpoint-monitoring-release                              # On-Demand Release Name
 internal_networks_name : default                        # Some Network From Your 'bosh cloud-config(cc)'
 external_networks_name : vip
 haproxy_public_ip : 15.165.3.150
 mariadb_disk_type : 30GB # MariaDB Disk Type 'bosh cloud-config(cc)'
-PemSSH : false                                                       #  h_master에서 ssh접근시 사용하는 key file(default : false) 
+PemSSH : true
 ```
 
 
@@ -573,7 +573,7 @@ PemSSH : false                                                       #  h_master
 
 		$ cd deployments
 		$ ./deploy_pinpoint-{클라우드프로바이더}.sh
-		  Using deployment 'paasta-pinpoint-monitoring'
+		  Using deployment 'paasta-pinpoint-service'
 
 		  + azs:
 		  + - cloud_properties:
@@ -853,7 +853,7 @@ PemSSH : false                                                       #  h_master
 		  + - disk_size: 1048576
 		  +   name: 1TB
 
-		  + name: paasta-pinpoint-monitoring
+		  + name: paasta-pinpoint-service
 
 		  Continue? [yN]: y
 
@@ -872,6 +872,7 @@ PemSSH : false                                                       #  h_master
 		  Task 4506 | 06:06:55 | Compiling packages: python/4e255efa754d91b825476b57e111345f200944e1
 		  Task 4506 | 06:06:55 | Compiling packages: cli/24305e50a638ece2cace4ef4803746c0c9fe4bb0 (00:02:43)
 		  Task 4506 | 06:06:55 | Compiling packages: check/d6811f25e9d56428a9b942631c27c9b24f5064dc
+		  Task 4506 | 06:07:05 | Compiling packages: op-mysql-java-broker/3bf47851b2c0d3bea63a0c58452df58c14a15482 (00:02:53)
 		  Task 4506 | 06:07:05 | Compiling packages: boost/3eb8bdb1abb7eff5b63c4c5bdb41c0a778925c31
 		  Task 4506 | 06:07:10 | Compiling packages: openjdk-1.8.0_45/57e0ee876ea9d90f5470e3784ae1171bccee850a (00:02:58)
 		  Task 4506 | 06:07:53 | Compiling packages: golang/f57ddbc8d55d7a0f08775bf76bb6a27dc98c7ea7 (00:01:00)
@@ -892,10 +893,21 @@ PemSSH : false                                                       #  h_master
 		  Task 4506 | 06:11:49 | Compiling packages: galera/d15a1d2d15e5e7417278d4aa1b908566022b9623 (00:13:18)
 		  Task 4506 | 06:25:07 | Compiling packages: mariadb/43aa3547bc5a01dd51f1501e6b93c215dd7255e9 (00:18:49)
 		  Task 4506 | 06:43:56 | Compiling packages: xtrabackup/2e701e7a9e4241b28052d984733de36aae152275 (00:10:26)
+		  Task 4506 | 06:55:22 | Creating missing vms: mysql/ea075ae6-6326-478b-a1ba-7fbb0b5b0bf5 (0)
+		  Task 4506 | 06:55:22 | Creating missing vms: mysql/e8c52bf2-cd48-45d0-9553-f6367942a634 (2)
 		  Task 4506 | 06:55:22 | Creating missing vms: proxy/023edddd-418e-46e4-8d40-db452c694e16 (0)
+		  Task 4506 | 06:55:22 | Creating missing vms: mysql/8a830154-25b6-432a-ad39-9ff09d015760 (1)
 		  Task 4506 | 06:55:22 | Creating missing vms: paasta-mysql-java-broker/bb5676ca-efba-48fc-bc11-f464d0ae9c78 (0)
+		  Task 4506 | 06:57:18 | Creating missing vms: mysql/ea075ae6-6326-478b-a1ba-7fbb0b5b0bf5 (0) (00:01:56)
 		  Task 4506 | 06:57:23 | Creating missing vms: proxy/023edddd-418e-46e4-8d40-db452c694e16 (0) (00:02:01)
+		  Task 4506 | 06:57:23 | Creating missing vms: mysql/e8c52bf2-cd48-45d0-9553-f6367942a634 (2) (00:02:01)
 		  Task 4506 | 06:57:23 | Creating missing vms: paasta-mysql-java-broker/bb5676ca-efba-48fc-bc11-f464d0ae9c78 (0) (00:02:01)
+		  Task 4506 | 06:57:23 | Creating missing vms: mysql/8a830154-25b6-432a-ad39-9ff09d015760 (1) (00:02:01)
+		  Task 4506 | 06:57:24 | Updating instance mysql: mysql/ea075ae6-6326-478b-a1ba-7fbb0b5b0bf5 (0) (canary) (00:02:32)
+		  Task 4506 | 06:59:56 | Updating instance mysql: mysql/8a830154-25b6-432a-ad39-9ff09d015760 (1) (00:03:03)
+		  Task 4506 | 07:02:59 | Updating instance mysql: mysql/e8c52bf2-cd48-45d0-9553-f6367942a634 (2) (00:03:04)
+		  Task 4506 | 07:06:03 | Updating instance proxy: proxy/023edddd-418e-46e4-8d40-db452c694e16 (0) (canary) (00:01:01)
+		  Task 4506 | 07:07:04 | Updating instance paasta-mysql-java-broker: paasta-mysql-java-broker/bb5676ca-efba-48fc-bc11-f464d0ae9c78 (0) (canary) (00:01:02)
 
 		  Task 4506 Started  Fri Aug 31 06:04:10 UTC 2018
 		  Task 4506 Finished Fri Aug 31 07:08:06 UTC 2018
@@ -947,16 +959,16 @@ $ cf bind-staging-security-group pinpoint
 $ cf bind-running-security-group pinpoint
 ```
 
-### <div id='25'> 2.5. Pinpoint User-Provided 등록
+### <div id='25'> 2.5. Pinpoint 서비스 브로커 등록
 
 Pinpoint 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩을
-사용하기 위해서 먼저 Pinpoint User-Provided를 등록해 주어야 한다.
+사용하기 위해서 먼저 Pinpoint 서비스 브로커를 등록해 주어야 한다.
 
-User-Provided 등록시 PaaS-TA에서 서비스를 등록 할
+서비스 브로커 등록시 PaaS-TA에서 서비스브로커를 등록 할
 수 있는 사용자로 로그인이 되어 있어야 한다.
 
 <br>
--   서비스 목록을 확인한다.
+-   서비스 브로커 목록을 확인한다.
 
 ```
 $ cf services
@@ -969,10 +981,10 @@ No service brokers found
 ```
 
 <br>
--   Pinpoint User-Provided를 등록한다.
+-   Pinpoint 서비스 브로커를 등록한다.
 
 ```
-$ cf cups {서비스 이름} -p '{"collector_host":"{PINOINT COLLECTOR IP}","collector_span_port":"{COLLECTOR SPAN PORT}","collector_stat_port":"{COLLECTOR START PORT}","collector_tcp_port":"{COLLECTOR TCP PORT}"}'
+$ cf cups {서비스브로커 이름} -p '{"collector_host":"{PINOINT COLLECTOR IP}","collector_span_port":"{COLLECTOR SPAN PORT}","collector_stat_port":"{COLLECTOR START PORT}","collector_tcp_port":"{COLLECTOR TCP PORT}"}'
 ```
 
 ```
@@ -984,7 +996,7 @@ OK
 ```
 
 <br>
--   등록된 Pinpoint User-Provided를 확인한다.
+-   등록된 Pinpoint 서비스 브로커를 확인한다.
 
 ```
 $ cf services
