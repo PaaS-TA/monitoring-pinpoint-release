@@ -947,12 +947,12 @@ $ cf bind-staging-security-group pinpoint
 $ cf bind-running-security-group pinpoint
 ```
 
-### <div id='25'> 2.5. Pinpoint User-Provided 등록
+### <div id='25'> 2.5. Pinpoint User-Provided service 등록
 
 Pinpoint 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩을
-사용하기 위해서 먼저 Pinpoint User-Provided를 등록해 주어야 한다.
+사용하기 위해서 먼저 Pinpoint User-Provided service를 등록해 주어야 한다.
 
-User-Provided 등록시 PaaS-TA에서 서비스를 등록 할
+User-Provided service 등록시 PaaS-TA에서 서비스를 등록 할
 수 있는 사용자로 로그인이 되어 있어야 한다.
 
 <br>
@@ -969,7 +969,7 @@ No service brokers found
 ```
 
 <br>
--   Pinpoint User-Provided를 등록한다.
+-   Pinpoint User-Provided service를 등록한다.
 
 ```
 $ cf cups {서비스 이름} -p '{"collector_host":"{PINOINT COLLECTOR IP}","collector_span_port":"{COLLECTOR SPAN PORT}","collector_stat_port":"{COLLECTOR START PORT}","collector_tcp_port":"{COLLECTOR TCP PORT}"}'
@@ -984,7 +984,7 @@ OK
 ```
 
 <br>
--   등록된 Pinpoint User-Provided를 확인한다.
+-   등록된 Pinpoint User-Provided service를 확인한다.
 
 ```
 $ cf services
