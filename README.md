@@ -146,15 +146,17 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
 		
 		$ cd PAAS-TA-PINPOINT-MONITORING-RELEASE
 		
-		$ mkdir src
-		
 		$ cd src
+			
+		각각의 폴더에 설치파일 다운로드
 		
-		$ wget -O paasta-pinpoint-src.zip http://45.248.73.44/index.php/s/yr9JK7efeYEXExZ/download
-		
-		$ unzip paasta-pinpoint-src.zip
-		
-		$ rm paasta-pinpoint-src.zip
+		- apache-tomcat-8.0.32.tar.gz
+		- pinpoint-web-1.8.4.war
+		- jdk-8u222-ojdkbuild-linux-x64.zip
+		- hbase-1.2.7-bin.tar.gz
+		- haproxy-1.6.5.tar.gz
+		- hadoop-3.1.2.tar.gz
+		- pinpoint-collector-1.8.4.war
 		
 		$ cd ..
 		
