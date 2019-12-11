@@ -142,27 +142,9 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
 
 - **사용 예시**
 
-		$ git clone https://github.com/PaaS-TA/PAAS-TA-PINPOINT-MONITORING-RELEASE.git
+		$ cd ~/workspace/paasta-5.0/release/paasta-monitoring
 		
-		$ cd PAAS-TA-PINPOINT-MONITORING-RELEASE
-		
-		$ cd src
-			
-		각각의 폴더에 설치파일 다운로드
-		
-		- apache-tomcat-8.0.32.tar.gz
-		- pinpoint-web-1.8.4.war
-		- jdk-8u222-ojdkbuild-linux-x64.zip
-		- hbase-1.2.7-bin.tar.gz
-		- haproxy-1.6.5.tar.gz
-		- hadoop-3.1.2.tar.gz
-		- pinpoint-collector-1.8.4.war
-		
-		$ cd ..
-		
-		$ chmod +x create.sh
-		
-		$ ./create.sh
+		$ bosh -e micro-bosh upload-release  paasta-pinpoint-monitoring-release.tgz
 
 -	업로드 된 Pinpoint 릴리즈를 확인한다.
 
@@ -573,7 +555,7 @@ PemSSH : false                                                       #  h_master
 
 - **사용 예시**
 
-		$ cd deployments
+		$ cd ~/workspace/paasta-5.0/deployment/paasta-deployment-monitoring/paasta-pinpoint-monitoring
 		$ ./deploy_pinpoint-{클라우드프로바이더}.sh
 		  Using deployment 'paasta-pinpoint-monitoring'
 
