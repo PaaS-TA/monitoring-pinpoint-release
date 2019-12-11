@@ -2,7 +2,7 @@
 
 ---
 ### On-Demand Bosh Deployment Name Setting ###
-deployment_name: paasta-pinpoint-monitoring                       #On-Demand Deployment Name
+deployment_name: paasta-pinpoint-monitoring                       # Deployment Name
 #
 #### Main Stemcells Setting ###
 stemcell_os: ubuntu-xenial                                      # Deployment Main Stemcell OS
@@ -17,10 +17,10 @@ vm_type: caas_small_highmem
 #test_vm_type: service_tiny
 #
 #### On-Demand Release Deployment Setting ### 
-releases_name :  paasta-pinpoint-monitoring-release                              # On-Demand Release Name
+releases_name :  paasta-pinpoint-monitoring-release                              #  Release Name
 internal_networks_name : default                        # Some Network From Your 'bosh cloud-config(cc)'
 external_networks_name : vip
 haproxy_public_ip : 15.165.3.150 
 mariadb_disk_type : 30GB # MariaDB Disk Type 'bosh cloud-config(cc)'
-PemSSH : true
+PemSSH : false
 #
