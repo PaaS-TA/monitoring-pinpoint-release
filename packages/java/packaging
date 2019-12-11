@@ -12,7 +12,7 @@ fi
 
 #UNPRESS ARCHIVE
 if [[ -f $archive ]] ; then
-  tar xzf $archive
+  unzip $archive
 else
   echo "Archive not found"
   exit 1
