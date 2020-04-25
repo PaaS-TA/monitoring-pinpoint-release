@@ -960,7 +960,7 @@ $ cf cups {서비스 이름} -p '{"application_name":"{App Name}", "collector_ho
 ```
 
 ```
-$ cf cups pinpoint_monitoring_service -p '{"collector_host":"10.0.81.122","collector_span_port":"29996","collector_stat_port":"29995","collector_tcp_port":"29994"}'
+$ cf cups pinpoint_monitoring_service -p '{"application_name":"spring-music-pinpoint","collector_host":"10.0.81.122","collector_span_port":"29996","collector_stat_port":"29995","collector_tcp_port":"29994"}'  -t 'pinpoint'
 ```
 ```
 Creating user provided service pinpoint_monitoring_service in  as admin...
