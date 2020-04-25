@@ -956,7 +956,7 @@ No service brokers found
 -   Pinpoint User-Provided service를 등록한다.
 
 ```
-$ cf cups {서비스 이름} -p '{"collector_host":"{PINOINT COLLECTOR IP}","collector_span_port":"{COLLECTOR SPAN PORT}","collector_stat_port":"{COLLECTOR START PORT}","collector_tcp_port":"{COLLECTOR TCP PORT}"}'
+$ cf cups {서비스 이름} -p '{"application_name":"{App Name}", "collector_host":"{PINOINT COLLECTOR IP}","collector_span_port":"{COLLECTOR SPAN PORT}","collector_stat_port":"{COLLECTOR START PORT}","collector_tcp_port":"{COLLECTOR TCP PORT}"}' -t 'pinpoint'
 ```
 
 ```
@@ -1146,6 +1146,7 @@ System-Provided:
 "user-provided": [
  {
   "credentials": {
+   "application_name": "spring-music-pinpoint",
    "collector_host": "10.0.81.122",
    "collector_span_port": 29996,
    "collector_stat_port": 29995,
