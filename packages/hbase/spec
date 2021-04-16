@@ -3,5 +3,5 @@ name: hbase
 dependencies: 
 - java
 files:
-- hbase/hbase-1.2.7-bin.tar.gz
+- hbase/hbase-2.4.2-bin.tar.gz
 - hbase/hbase-create.hbase
