@@ -13,7 +13,7 @@ fi
 #COPY ARCHIVE
 if [[ -d hadoop-3.2.2/bin ]]; then
   cp -a hadoop-3.2.2/* ${BOSH_INSTALL_TARGET}
-  chmod 700 ${BOSH_INSTALL_TARGET}/*
+  chmod 750 ${BOSH_INSTALL_TARGET}/*
 else
   echo "HADOOP is not properly packaged"
   exit 1
