@@ -214,4 +214,11 @@
     A special value of "*" means all users are allowed.</description>
   </property>
 
+  <!-- CCE, CVE -->
+  <property>
+    <name>security.inter.tracker.protocol.acl</name>
+    <value>vcap supergroup</value>
+  </property>		
+
+
 </configuration>
