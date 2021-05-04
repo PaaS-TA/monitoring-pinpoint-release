@@ -45,7 +45,7 @@
 
   <property>
     <name>security.datanode.protocol.acl</name>
-    <value>*</value>
+    <value>vcap supergroup</value>
     <description>ACL for DatanodeProtocol, which is used by datanodes to
     communicate with the namenode.
     The ACL is a comma-separated list of user and group names. The user and

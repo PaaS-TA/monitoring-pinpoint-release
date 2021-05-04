@@ -59,15 +59,26 @@
 	<name>dfs.webhdfs.enabled</name>
 	<value>false</value>
     </property>
-    
+
+    <!-- Enable Access Control Lists -->
+    <property>
+	<name>dfs.namenode.acls.enabled</name>
+	<value>true</value>
+    </property>
+
 
     <!-- Enable encryption -->
     <!--
+    <property>
+	<name>dfs.data.transfer.protection</name>
+	<value>privacy</value>
+    </property>
     <property>
 	<name>dfs.encrypt.data.transfer</name>
 	<value>true</value>
     </property>
     -->
+
     <!-- Set up Cipher Suites -->
     <!--
     <property>
