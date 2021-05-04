@@ -6,10 +6,11 @@
   - 1.4. [참고자료](#14)
 2. [Pinpoint 서비스팩 설치](#2)
   - 2.1. [설치전 준비사항](#21)
-  - 2.2. [Pinpoint 서비스 릴리즈 업로드](#22)
-  - 2.3. [Pinpoint 서비스 Deployment 파일 수정 및 배포](#23)
-  - 2.4. [Pinpoint security-group 등록](#24)
-  - 2.5. [Pinpoint 서비스 브로커 등록](#25)
+  - 2.2. [Pinpoint 릴리즈 생성하기](#22)
+  - 2.3. [Pinpoint 서비스 릴리즈 업로드](#23)
+  - 2.4. [Pinpoint 서비스 Deployment 파일 수정 및 배포](#24)
+  - 2.5. [Pinpoint security-group 등록](#25)
+  - 2.6. [Pinpoint 서비스 브로커 등록](#26)
 3. [Sample Web App 연동 Pinpoint 연동](#3)
   - 3.1. [Sample Web App 구조](#31)
   - 3.2. [Sample Web App에 서비스 바인드 신청 및 App 확인](#32)
@@ -70,7 +71,27 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
 - 다운로드 위치
 >Download : **<https://paas-ta.kr/download/package>**
 
-### <div id='22'> 2.2. paasta-pinpoint-monitoring-release 서비스 릴리즈 업로드
+### <div id='22'> 2.2. Pinpoint 릴리즈 생성하기
+
+- Github Repository clone 및 src 다운로드
+```
+ $ git clone https://github.com/PaaS-TA/PAAS-TA-PINPOINT-MONITORING-RELEASE.git
+ 
+ $ cd PAAS-TA-PINPOINT-MONITORING-RELEASE
+ 
+ $ wget -O src.zip https://nextcloud.paas-ta.org/index.php/s/6KecpP2a7HKH58z
+ 
+ $ unzip src.zip
+ 
+ $ rm src.zip
+ ```
+
+- 릴리즈 생성하는 쉘 스크립트 실행
+```
+ $ sh create.sh
+``` 
+
+### <div id='23'> 2.3. paasta-pinpoint-monitoring-release 서비스 릴리즈 업로드
 
 -	업로드 되어 있는 릴리즈 목록을 확인한다.
 
@@ -230,7 +251,7 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
 
 
 
-### <div id='23'> 2.3. PINPOINT 서비스 Deployment 파일 및 deploy_pinpoint-프로바이더.sh 수정 및 배포
+### <div id='24'> 2.4. PINPOINT 서비스 Deployment 파일 및 deploy_pinpoint-프로바이더.sh 수정 및 배포
 
 BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML 파일이다.
 Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (OS, BOSH agent) 을 사용할것이며 Release (Software packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params 등을 정의가 되어 있다.
@@ -903,7 +924,7 @@ PemSSH : false                                                       #  h_master
 		pinpoint_web/c23b79cf-ef55-42f5-9c2a-b8102b6e5ca8   running        z3  10.0.81.123   i-02a82ab6f02784317  caas_small_highmem  true 
 
 
-### <div id='24'> 2.4. security-group 등록
+### <div id='25'> 2.5. security-group 등록
 Pinpoint collector와 배포 app간 통신을 위한  처리.
 
 ```
@@ -931,7 +952,7 @@ $ cf bind-staging-security-group pinpoint
 $ cf bind-running-security-group pinpoint
 ```
 
-### <div id='25'> 2.5. Pinpoint User-Provided service 등록
+### <div id='26'> 2.6. Pinpoint User-Provided service 등록
 
 Pinpoint 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩을
 사용하기 위해서 먼저 Pinpoint User-Provided service를 등록해 주어야 한다.
