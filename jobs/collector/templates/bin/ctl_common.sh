@@ -50,8 +50,8 @@ common_start() {
    rm -rf $CATALINA_HOME/webapps/ROOT
    echo "SUCCESS :: Checking CATALINA ROOT ..."
   else
-   echo "FAIL :: Checking CATALINA ROOT ..."
-   exit 1
+   echo "PASS :: CATALINA ROOT Directory is not exist ..."
+   #exit 1
   fi
 																					        
   #UNZIP WAR
@@ -61,4 +61,7 @@ common_start() {
    echo "FAIL :: UNZIP WAR ..."
    exit 1
   fi
+  
+  # Source file permission config - CCE/CVE
+  chmod -R 644 /var/vcap/packages/tomcat/webapps/ROOT
 }
