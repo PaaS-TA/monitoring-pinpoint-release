@@ -1,0 +1,14 @@
+#!/bin/sh 
+
+# CCE-Linux (U-16)
+ApparmorRemove="/sys/kernel/security/apparmor/.remove"
+ApparmorReplace="/sys/kernel/security/apparmor/.replace"
+ApparmorLoad="/sys/kernel/security/apparmor/.load"
+ApparmorAccess="/sys/kernel/security/apparmor/.access"
+MemoryCGroupEvent="/sys/fs/cgroup/memory/cgroup.event_control"
+
+sudo chmod o-w $ApparmorRemove
+sudo chmod o-w $ApparmorReplace
+sudo chmod o-w $ApparmorLoad
+sudo chmod o-w $ApparmorAccess
+sudo chmod o-w $MemoryCGroupEvent

@@ -7,6 +7,7 @@ packages:
   - tomcat
 
 templates:
+  bin/pre-start.erb: bin/pre-start
   bin/pinpoint_web_ctl.erb: bin/pinpoint_web_ctl
   data/properties.sh.erb: data/properties.sh
   data/hbase.properties.erb: data/hbase.properties

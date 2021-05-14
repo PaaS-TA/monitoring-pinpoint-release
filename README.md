@@ -71,6 +71,9 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
 - 다운로드 위치
 >Download : **<https://paas-ta.kr/download/package>**
 
+또한 Pinpoint 서비스팩 사용을 위해서는 Pinpoint 빌드팩 등록 작업이 선행되어야 하며, 다음 문서를 참고하여 빌드팩 등록 작업을 수행할 수 있다.
+>PaaS-TA Pinpoint Monitoring Buildpack Guide : **<https://github.com/PaaS-TA/PAAS-TA-PINPOINT-MONITORING-BUILDPACK>**
+
 ### <div id='22'> 2.2. Pinpoint 릴리즈 생성하기
 
 - Github Repository clone 및 src 다운로드
