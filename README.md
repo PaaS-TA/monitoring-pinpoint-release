@@ -82,7 +82,7 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
  
  $ cd PAAS-TA-PINPOINT-MONITORING-RELEASE
  
- $ wget -O src.zip https://nextcloud.paas-ta.org/index.php/s/bkM65ZJYXAJtqoA/download
+ $ wget -O src.zip https://nextcloud.paas-ta.org/index.php/s/iEkZoqF7LQftMFo/download
  
  $ unzip src.zip
  
