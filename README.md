@@ -143,9 +143,9 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
 
 - Github Repository clone 및 src 다운로드
 ```
- $ git clone https://github.com/PaaS-TA/PAAS-TA-PINPOINT-MONITORING-RELEASE.git
+ $ git clone https://github.com/PaaS-TA/monitoring-pinpoint-release.git
  
- $ cd PAAS-TA-PINPOINT-MONITORING-RELEASE
+ $ cd monitoring-pinpoint-release
  
  $ wget -O src.zip https://nextcloud.paas-ta.org/index.php/s/iEkZoqF7LQftMFo/download
  
