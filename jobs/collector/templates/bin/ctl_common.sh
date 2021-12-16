@@ -4,6 +4,10 @@ set -e
 set -u
 
 common_init() {
+
+  #Log4j RCE prevent
+  export LOG4J_FORMAT_MSG_NO_LOOKUPS=true
+
   #CHECK CATALINA_HOME
   if [ -d /var/vcap/packages/tomcat ]; then
     export CATALINA_HOME=/var/vcap/packages/tomcat
