@@ -12,6 +12,7 @@ templates:
   data/properties.sh.erb: data/properties.sh
   data/hbase.properties.erb: data/hbase.properties
   data/pinpoint-collector.properties.erb: data/pinpoint-collector.properties
+  data/pinpoint-collector-grpc.properties.erb: data/pinpoint-collector-grpc.properties
   bin/ctl_common.sh: bin/ctl_common.sh
 provides:
   - name: collector_link
