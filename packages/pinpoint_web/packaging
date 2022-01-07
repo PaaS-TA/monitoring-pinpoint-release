@@ -1,6 +1,6 @@
 set -e
 
-archive="pinpoint_web/pinpoint-web-1.8.4.war"
+archive="pinpoint_web/pinpoint-web-boot-2.3.3.jar"
 
 #COPY ARCHIVE
 if [[ -f $archive ]] ; then
