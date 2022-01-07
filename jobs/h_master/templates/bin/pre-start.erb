@@ -1,7 +1,5 @@
 #!/bin/sh 
 
-
-
 HOSTNAME=$(cat /etc/hosts | grep "<%=link('h_master_link').instances[0].address %>" | sed -e 's/<%=link('h_master_link').instances[0].address %>//g' | sed 's/ //g')
 #HOSTNAME=<%=link('h_master_link').address %>
 echo "${HOSTNAME}" > /var/vcap/jobs/h_master/config/hbase/regionservers
@@ -73,14 +71,13 @@ chmod 644 /root/.ssh/authorized_keys
 chown -R vcap:vcap /home/vcap/.ssh/*
 
 
-mkdir /var/vcap/data/hadoop-3.2.2
+mkdir /var/vcap/data/hadoop-3.1.2
 chown -R vcap:vcap /home/vcap/.ssh/*
 chown -R vcap:vcap /var/vcap/packages/hadoop/*
 chown -R vcap:vcap /var/vcap/packages/hadoop/
-chown -R vcap:vcap /var/vcap/data/hadoop-3.2.2/
+chown -R vcap:vcap /var/vcap/data/hadoop-3.1.2/
 chown -R vcap:vcap /var/vcap/packages/hbase/
 chown -R vcap:vcap /var/vcap/packages/hbase/*
-
 
 hostnamectl set-hostname <%=link('h_master_link').address %>
 <% if p('PemSSH') == true %>
@@ -88,16 +85,3 @@ ssh ${HOSTNAME}
 <% else %>
 ssh vcap@${HOSTNAME} -o StrictHostKeyChecking=no 'pwd'
 <% end %>
-
-# CCE-Linux (U-16)
-ApparmorRemove="/sys/kernel/security/apparmor/.remove"
-ApparmorReplace="/sys/kernel/security/apparmor/.replace"
-ApparmorLoad="/sys/kernel/security/apparmor/.load"
-ApparmorAccess="/sys/kernel/security/apparmor/.access"
-MemoryCGroupEvent="/sys/fs/cgroup/memory/cgroup.event_control"
-
-sudo chmod o-w $ApparmorRemove
-sudo chmod o-w $ApparmorReplace
-sudo chmod o-w $ApparmorLoad
-sudo chmod o-w $ApparmorAccess
-sudo chmod o-w $MemoryCGroupEvent
