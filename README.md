@@ -147,7 +147,7 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
  
  $ cd monitoring-pinpoint-release
  
- $ wget -O src.zip https://nextcloud.paas-ta.org/index.php/s/iEkZoqF7LQftMFo/download
+ $ wget -O src.zip https://nextcloud.paas-ta.org/index.php/s/e3eWgnNioDcqK7L/download
  
  $ unzip src.zip
  
