@@ -17,7 +17,7 @@ case $1 in
   start)
     echo "Starting PINPOINT COLLECTOR ..."
 
-    JAR_NAME='pinpoint-collector-boot-2.3.2.jar'
+    JAR_NAME='pinpoint-collector-boot-2.3.3.jar'
     java -jar -Dspring.profiles.active=release $PKG_DIR/collector/$JAR_NAME --spring.config.location=$HBASE_CONFIG,$PINPOINT_CONFIG,$GRPC_CONFIG --spring.main.allow-bean-definition-overriding=true --spring.pid.file=$PID_FILE & echo $! > $PID_FILE &
 
     pid_guard $PID_FILE $JOB_NAME
