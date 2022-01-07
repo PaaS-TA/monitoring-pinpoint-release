@@ -1,6 +1,6 @@
 set -e
 
-archive="collector/pinpoint-collector-1.8.4.war"
+archive="collector/pinpoint-collector-boot-2.3.3.war"
 
 #COPY ARCHIVE
 if [[ -f $archive ]] ; then
