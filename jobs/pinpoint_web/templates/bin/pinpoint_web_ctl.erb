@@ -1,46 +1,39 @@
 #!/bin/bash
-
+  
 set -e
-set -u
 
 #SET HELPER
 export JOB_NAME='pinpoint_web'
 source /var/vcap/packages/bosh-helpers/ctl_setup.sh $JOB_NAME
 export PID_FILE=/etc/sv/monit/pinpoint_web.pid
-HBASE_CONFIG="${JOB_DIR}/data/hbase.properties"
-PINPOINT_WEB_CONFIG="${JOB_DIR}/data/pinpoint-web.properties"
-VENDOR="${JOB_DIR}/data/vendor.css"
-PINPOINT_CSS="${JOB_DIR}/data/pinpoint.css"
-hostnamectl set-hostname <%=link('pinpoint_web_link').address %>
-source /var/vcap/jobs/${JOB_NAME}/bin/ctl_common.sh ${JOB_NAME}
-#COMMON INIT
-common_init
-case $1 in
-  
-  start)
-    echo "Starting COLLECTOR ..."
-    
-    pid_guard $PID_FILE $JOB_NAME
-    war_name='pinpoint-web-1.8.4.war'
-    common_start $war_name
-    cp -r $HBASE_CONFIG $CATALINA_HOME/webapps/ROOT/WEB-INF/classes/
-    cp -r $PINPOINT_WEB_CONFIG $CATALINA_HOME/webapps/ROOT/WEB-INF/classes/
-    cp -r $VENDOR $CATALINA_HOME/webapps/ROOT/lib/css/
-    cp -r $PINPOINT_CSS $CATALINA_HOME/webapps/ROOT/lib/css/
-    $CATALINA_HOME/bin/startup_pinpoint_web.sh
 
-    echo "SUCCESS :: Starting COLLECTOR ..."
-    ;;
-  
-  stop)
-    echo "Stopping COLLECTOR ..."
-    $CATALINA_HOME/bin/shutdown_pinpoint_web.sh > /dev/null &
-    kill_and_wait $PID_FILE
-    ;;
-  
-  *)
-    echo "Usage: $0 {start|stop}"
-    ;;
+HBASE_CONFIG="${JOB_DIR}/data/hbase.properties"
+PINPOINT_CONFIG="${JOB_DIR}/data/pinpoint-collector.properties"
+PINPOINT_WEB_CONFIG="${JOB_DIR}/data/pinpoint-web.properties"
+GRPC_CONFIG="${JOB_DIR}/data/pinpoint-collector-grpc.properties"
+
+hostnamectl set-hostname <%=link('pinpoint_web_link').address %>
+case $1 in
+
+start)
+  echo "Starting PINPOINT WEB ..."
+
+  JAR_NAME='pinpoint-web-boot-2.3.2.jar'
+  java -jar -Dspring.profiles.active=release $PKG_DIR/pinpoint_web/$JAR_NAME --spring.config.location=$HBASE_CONFIG,$PINPOINT_WEB_CONFIG --spring.main.allow-bean-definition-overriding=true --spring.pid.file=$PID_FILE & echo $! > $PID_FILE &
+
+  pid_guard $PID_FILE $JOB_NAME
+
+  echo "PINPOINT WEB has launched ..."
+  ;;
+
+stop)
+  echo "Stopping PINPOINT WEB ..."
+  kill_and_wait $PID_FILE
+  ;;
+
+*)
+  echo "Usage: $0 {start|stop}"
+  ;;
 
 esac
-exit 1
+exit 0
