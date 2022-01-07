@@ -4,4 +4,4 @@ name: collector
 dependencies: []
 
 files:
-- collector/pinpoint-collector-1.8.4.war
+- collector/pinpoint-collector-boot-2.3.3.jar
