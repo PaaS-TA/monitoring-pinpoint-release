@@ -1,6 +1,7 @@
 ---
 name: pinpoint_web 
-dependencies: 
-- tomcat
+
+dependencies: []
+
 files:
 - pinpoint_web/pinpoint-web-boot-2.3.3.jar
