@@ -4,7 +4,6 @@ packages:
   - bosh-helpers
   - java
   - pinpoint_web
-  - tomcat
 
 templates:
   bin/pre-start.erb: bin/pre-start
@@ -12,9 +11,9 @@ templates:
   data/properties.sh.erb: data/properties.sh
   data/hbase.properties.erb: data/hbase.properties
   data/pinpoint-web.properties.erb: data/pinpoint-web.properties
-  bin/ctl_common.sh: bin/ctl_common.sh
   data/vendor.css: data/vendor.css
   data/pinpoint.css: data/pinpoint.css	
+  
 provides:
   - name: pinpoint_web_link
     type: pinpoint_web
