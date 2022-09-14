@@ -69,7 +69,7 @@
  
  $ cd monitoring-pinpoint-release
  
- $ wget -O src.zip https://nextcloud.paas-ta.org/index.php/s/tXS8nWL7KrY3nRS/download
+ $ wget -O src.zip https://nextcloud.paas-ta.org/index.php/s/GxgxkPWjX9fw7Ki/download
  
  $ unzip src.zip
  
@@ -77,7 +77,7 @@
  ```
  
  
-## 2. PaaS-TA monitoring-dashboard-release Upload
+## 2. PaaS-TA monitoring-pinpoint-release Upload
 ```
  $ sh create-release.sh
 ``` 
