@@ -69,7 +69,7 @@
  
  $ cd monitoring-pinpoint-release
  
- $ wget -O src.zip https://nextcloud.paas-ta.org/index.php/s/GxgxkPWjX9fw7Ki/download
+ $ wget -O src.zip https://nextcloud.paas-ta.org/index.php/s/tbRid9ijqaDgyZ8/download
  
  $ unzip src.zip
  
